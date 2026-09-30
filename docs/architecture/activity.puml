@@ -1,0 +1,28 @@
+@startuml SIPROCAFE-NAV-Activity
+title Diagrama de actividad — Planificación y adaptación (preliminar)
+
+start
+:Seleccionar origen;
+:Seleccionar lotes a visitar;
+:Seleccionar estrategia\n(Shortest / Fastest / Priority);
+:Calcular ruta\n(NavigationService → RoutingStrategy);
+:Mostrar ruta y métricas\n(distancia, tiempo, tiempo de cálculo);
+
+while (¿El usuario continúa?) is (sí)
+  if (¿Cambió alguna condición\nde camino?) then (sí)
+    :RouteConditionMonitor notifica;
+    :NavigationService recalcula;
+    :Mostrar nueva ruta\ny mensaje de cambio detectado;
+  else (no)
+    if (¿Cambió la estrategia?) then (sí)
+      :changeStrategy();
+      :Mostrar ruta y métricas;
+    else (no)
+      :Comparar estrategias (opcional);
+    endif
+  endif
+endwhile (no)
+
+stop
+
+@enduml

@@ -1,0 +1,48 @@
+@startuml SIPROCAFE-NAV-Sequence
+title Diagramas de secuencia — Calcular y Recalcular (preliminar)
+
+== Escenario A: Calcular recorrido ==
+
+actor Usuario
+participant "Frontend" as UI
+participant "Navigation API" as API
+participant "NavigationService" as NS
+participant "StrategyEngine" as SE
+participant "RoutingStrategy" as RS
+participant "GraphRepository" as GR
+
+Usuario -> UI : Origen + lotes + estrategia
+UI -> API : POST /route/calculate
+API -> NS : calculateRoute(plan)
+NS -> GR : getGraph()
+GR --> NS : NavigationGraph
+NS -> SE : resolve(strategyId)
+SE --> NS : RoutingStrategy
+NS -> RS : calculate(graph, plan)
+RS --> NS : Route + métricas internas
+NS --> API : Route + RouteMetrics
+API --> UI : JSON resultado
+UI --> Usuario : Grafo + ruta + métricas
+
+== Escenario B: Cambio de condición → notificación → recalculación ==
+
+actor Usuario
+participant "Frontend" as UI
+participant "Navigation API" as API
+participant "RouteConditionMonitor" as MON
+participant "NavigationService" as NS
+participant "RoutingStrategy" as RS
+
+Usuario -> UI : Bloquear segmento A—B
+UI -> API : PATCH /segments/{id}/status
+API -> MON : setSegmentStatus(id, BLOQUEADO)
+MON -> MON : actualizar grafo
+MON -> NS : notify(RouteCondition)
+NS -> NS : ¿afecta plan activo?
+NS -> RS : calculate(graph, plan)  ' recalculate
+RS --> NS : Nueva Route
+NS --> API : Route + conditionChanged + recalculated
+API --> UI : JSON + mensaje
+UI --> Usuario : ⚠ Cambio detectado / Ruta recalculada
+
+@enduml

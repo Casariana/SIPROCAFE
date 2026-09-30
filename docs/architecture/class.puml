@@ -1,0 +1,79 @@
+@startuml SIPROCAFE-NAV-Classes
+title Diagrama de clases — SIPROCAFE Navigation (alineado al código)
+
+skinparam classAttributeIconSize 0
+
+interface RoutingStrategy {
+  + id: string
+  + name: string
+  + calculate(graph, plan): Route
+}
+
+abstract class BaseRoutingStrategy {
+  + calculate(graph, plan): Route
+  # edgeCost(segment): number
+  # selectNext(candidates, graph)
+  # dijkstra(graph, from, to): PathResult
+}
+
+class ShortestDistanceStrategy
+class FastestRouteStrategy
+class PriorityRouteStrategy
+
+BaseRoutingStrategy ..|> RoutingStrategy
+ShortestDistanceStrategy --|> BaseRoutingStrategy
+FastestRouteStrategy --|> BaseRoutingStrategy
+PriorityRouteStrategy --|> BaseRoutingStrategy
+
+class StrategyEngine {
+  - strategies: Map
+  + register(strategy)
+  + resolve(strategyId): RoutingStrategy
+  + list()
+}
+StrategyEngine o--> RoutingStrategy
+
+class NavigationService {
+  - activePlan: RoutePlan
+  - recalculationCount: number
+  + calculateRoute()
+  + changeStrategy()
+  + recalculateRoute()
+  + compareStrategies()
+  + onConditionChanged()
+}
+NavigationService --> StrategyEngine
+NavigationService ..|> RouteConditionObserver
+
+interface RouteConditionObserver {
+  + onConditionChanged(condition)
+}
+
+class RouteConditionMonitor {
+  + attach(observer)
+  + detach(observer)
+  + setSegmentStatus(id, status): RouteCondition
+  + notify(condition)
+}
+RouteConditionMonitor --> RouteConditionObserver
+
+class NavigationGraph {
+  + addPoint()
+  + addSegment()
+  + setSegmentStatus()
+  + traversableNeighbors()
+}
+class NavigationPoint
+class RouteSegment
+class Route
+class RoutePlan
+class RouteCondition
+class GraphRepository
+
+NavigationGraph *-- NavigationPoint
+NavigationGraph *-- RouteSegment
+RoutePlan --> Route
+NavigationService --> GraphRepository
+RouteConditionMonitor --> NavigationGraph
+
+@enduml

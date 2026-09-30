@@ -1,0 +1,28 @@
+{
+  "_comment": "Escenario de finca simulado para evaluación del algoritmo. No representa una finca real.",
+  "id": "finca-el-horizonte",
+  "name": "Finca El Horizonte",
+  "points": [
+    { "id": "entrada", "name": "Entrada", "type": "ENTRADA" },
+    { "id": "lote-a", "name": "Lote A", "type": "LOTE", "priority": "ALTA", "loteId": "LOTE-A" },
+    { "id": "lote-b", "name": "Lote B", "type": "LOTE", "priority": "NORMAL", "loteId": "LOTE-B" },
+    { "id": "lote-c", "name": "Lote C", "type": "LOTE", "priority": "URGENTE", "loteId": "LOTE-C" },
+    { "id": "lote-d", "name": "Lote D", "type": "LOTE", "priority": "NORMAL", "loteId": "LOTE-D" },
+    { "id": "lote-e", "name": "Lote E", "type": "LOTE", "priority": "ALTA", "loteId": "LOTE-E" },
+    { "id": "bodega", "name": "Bodega", "type": "BODEGA" }
+  ],
+  "segments": [
+    { "id": "seg-entrada-a", "fromId": "entrada", "toId": "lote-a", "distanceKm": 1.2, "timeMin": 4, "status": "NORMAL" },
+    { "id": "seg-entrada-d", "fromId": "entrada", "toId": "lote-d", "distanceKm": 1.5, "timeMin": 5, "status": "NORMAL" },
+    { "id": "seg-entrada-bodega", "fromId": "entrada", "toId": "bodega", "distanceKm": 0.4, "timeMin": 2, "status": "NORMAL" },
+    { "id": "seg-a-b", "fromId": "lote-a", "toId": "lote-b", "distanceKm": 1.0, "timeMin": 3, "status": "NORMAL" },
+    { "id": "seg-a-d", "fromId": "lote-a", "toId": "lote-d", "distanceKm": 1.1, "timeMin": 4, "status": "NORMAL" },
+    { "id": "seg-b-c", "fromId": "lote-b", "toId": "lote-c", "distanceKm": 1.3, "timeMin": 6, "status": "NORMAL" },
+    { "id": "seg-b-e", "fromId": "lote-b", "toId": "lote-e", "distanceKm": 1.4, "timeMin": 5, "status": "NORMAL" },
+    { "id": "seg-c-e", "fromId": "lote-c", "toId": "lote-e", "distanceKm": 0.9, "timeMin": 3, "status": "NORMAL" },
+    { "id": "seg-d-e", "fromId": "lote-d", "toId": "lote-e", "distanceKm": 1.6, "timeMin": 7, "status": "NORMAL" },
+    { "id": "seg-entrada-b", "fromId": "entrada", "toId": "lote-b", "distanceKm": 2.0, "timeMin": 3, "status": "NORMAL" },
+    { "id": "seg-a-c", "fromId": "lote-a", "toId": "lote-c", "distanceKm": 0.8, "timeMin": 8, "status": "CONGESTIONADO" }
+  ],
+  "bidirectional": true
+}

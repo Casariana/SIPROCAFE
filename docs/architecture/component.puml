@@ -1,0 +1,48 @@
+@startuml SIPROCAFE-NAV-Components
+title Diagrama de componentes — SIPROCAFE Navigation (preliminar)
+
+skinparam componentStyle rectangle
+skinparam packageStyle rectangle
+
+package "Cliente" {
+  [Frontend SIPROCAFE Web\n(React + Vite)] as Frontend
+}
+
+package "Backend Navigation" {
+  [Navigation API\n(Express)] as API
+  [Navigation Service] as NavService
+  [Strategy Engine] as StrategyEngine
+  [Route Condition Monitor] as Monitor
+  [Graph Repository\n(JSON / memoria)] as Repo
+}
+
+package "Estrategias" {
+  [ShortestDistanceStrategy] as S1
+  [FastestRouteStrategy] as S2
+  [PriorityRouteStrategy] as S3
+  interface "RoutingStrategy" as RSI
+}
+
+Frontend --> API : HTTP/JSON
+API --> NavService
+NavService --> StrategyEngine
+NavService --> Monitor : Observer
+StrategyEngine --> RSI
+S1 ..|> RSI
+S2 ..|> RSI
+S3 ..|> RSI
+NavService --> Repo
+Monitor --> Repo : actualiza estado
+
+note right of Monitor
+  Subject Observable
+  notifica cambios de
+  NORMAL / CONGESTIONADO / BLOQUEADO
+end note
+
+note right of StrategyEngine
+  Resuelve strategyId → RoutingStrategy
+  sin ifs de algoritmo en NavService
+end note
+
+@enduml

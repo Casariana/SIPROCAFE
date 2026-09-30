@@ -1,0 +1,186 @@
+{
+  "note": "Resultados obtenidos por ejecución real de pruebas. No inventados.",
+  "generatedAt": "2026-09-30T00:36:08.275Z",
+  "graph": "Finca El Horizonte",
+  "results": [
+    {
+      "caseId": "caso1-mapa-pequeno-shortest",
+      "recordedAt": "2026-09-30T00:36:08.267Z",
+      "totalDistanceKm": 4.3,
+      "estimatedTimeMin": 14,
+      "calculationTimeMs": 0.568,
+      "segmentCount": 4,
+      "visitedNodeCount": 5,
+      "recalculationCount": 0,
+      "strategyId": "shortest-distance",
+      "strategyName": "Menor distancia",
+      "path": [
+        "entrada",
+        "lote-a",
+        "lote-b",
+        "lote-a",
+        "lote-d"
+      ]
+    },
+    {
+      "caseId": "caso2-shortest",
+      "recordedAt": "2026-09-30T00:36:08.270Z",
+      "totalDistanceKm": 4.3,
+      "estimatedTimeMin": 14,
+      "calculationTimeMs": 0.141,
+      "segmentCount": 4,
+      "visitedNodeCount": 5,
+      "recalculationCount": 0,
+      "strategyId": "shortest-distance",
+      "strategyName": "Menor distancia",
+      "path": [
+        "entrada",
+        "lote-a",
+        "lote-b",
+        "lote-a",
+        "lote-d"
+      ]
+    },
+    {
+      "caseId": "caso2-fastest",
+      "recordedAt": "2026-09-30T00:36:08.270Z",
+      "totalDistanceKm": 4.1,
+      "estimatedTimeMin": 10,
+      "calculationTimeMs": 0.207,
+      "segmentCount": 3,
+      "visitedNodeCount": 4,
+      "recalculationCount": 0,
+      "strategyId": "fastest-route",
+      "strategyName": "Menor tiempo",
+      "path": [
+        "entrada",
+        "lote-b",
+        "lote-a",
+        "lote-d"
+      ]
+    },
+    {
+      "caseId": "caso2-priority",
+      "recordedAt": "2026-09-30T00:36:08.270Z",
+      "totalDistanceKm": 4.3,
+      "estimatedTimeMin": 14,
+      "calculationTimeMs": 0.211,
+      "segmentCount": 4,
+      "visitedNodeCount": 5,
+      "recalculationCount": 0,
+      "strategyId": "priority-route",
+      "strategyName": "Prioridad de lotes",
+      "path": [
+        "entrada",
+        "lote-a",
+        "lote-b",
+        "lote-a",
+        "lote-d"
+      ]
+    },
+    {
+      "caseId": "caso3-observer-recalc",
+      "recordedAt": "2026-09-30T00:36:08.272Z",
+      "totalDistanceKm": 3.6,
+      "estimatedTimeMin": 12,
+      "calculationTimeMs": 0.172,
+      "segmentCount": 3,
+      "visitedNodeCount": 4,
+      "recalculationCount": 1,
+      "strategyId": "shortest-distance",
+      "strategyName": "Menor distancia",
+      "blockedSegment": "seg-entrada-a",
+      "previousPath": [
+        "entrada",
+        "lote-a",
+        "lote-b",
+        "lote-a",
+        "lote-d"
+      ],
+      "newPath": [
+        "entrada",
+        "lote-d",
+        "lote-a",
+        "lote-b"
+      ],
+      "message": "Cambio detectado en el recorrido (segmento seg-entrada-a: NORMAL → BLOQUEADO). Ruta recalculada."
+    },
+    {
+      "caseId": "caso4-mapa-grande",
+      "recordedAt": "2026-09-30T00:36:08.273Z",
+      "totalDistanceKm": 6.4,
+      "estimatedTimeMin": 31,
+      "calculationTimeMs": 0.188,
+      "segmentCount": 6,
+      "visitedNodeCount": 7,
+      "recalculationCount": 0,
+      "strategyId": "shortest-distance",
+      "strategyName": "Menor distancia",
+      "path": [
+        "entrada",
+        "lote-a",
+        "lote-c",
+        "lote-e",
+        "lote-b",
+        "lote-a",
+        "lote-d"
+      ]
+    },
+    {
+      "caseId": "compare-shortest-distance",
+      "recordedAt": "2026-09-30T00:36:08.275Z",
+      "totalDistanceKm": 4.3,
+      "estimatedTimeMin": 14,
+      "calculationTimeMs": 0.071,
+      "segmentCount": 4,
+      "visitedNodeCount": 5,
+      "recalculationCount": 0,
+      "strategyId": "shortest-distance",
+      "strategyName": "Menor distancia",
+      "path": [
+        "entrada",
+        "lote-a",
+        "lote-b",
+        "lote-a",
+        "lote-d"
+      ]
+    },
+    {
+      "caseId": "compare-fastest-route",
+      "recordedAt": "2026-09-30T00:36:08.275Z",
+      "totalDistanceKm": 4.1,
+      "estimatedTimeMin": 10,
+      "calculationTimeMs": 0.065,
+      "segmentCount": 3,
+      "visitedNodeCount": 4,
+      "recalculationCount": 0,
+      "strategyId": "fastest-route",
+      "strategyName": "Menor tiempo",
+      "path": [
+        "entrada",
+        "lote-b",
+        "lote-a",
+        "lote-d"
+      ]
+    },
+    {
+      "caseId": "compare-priority-route",
+      "recordedAt": "2026-09-30T00:36:08.275Z",
+      "totalDistanceKm": 4.3,
+      "estimatedTimeMin": 14,
+      "calculationTimeMs": 0.07,
+      "segmentCount": 4,
+      "visitedNodeCount": 5,
+      "recalculationCount": 0,
+      "strategyId": "priority-route",
+      "strategyName": "Prioridad de lotes",
+      "path": [
+        "entrada",
+        "lote-a",
+        "lote-b",
+        "lote-a",
+        "lote-d"
+      ]
+    }
+  ]
+}
